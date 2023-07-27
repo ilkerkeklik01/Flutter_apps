@@ -5,7 +5,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 class ListViewKullanimi extends StatelessWidget {
   ListViewKullanimi({super.key});
 
-  List<Ogrenci> tumOgrenciler = List.generate(90000, (index) {
+  List<Ogrenci> tumOgrenciler = List.generate(100, (index) {
     return Ogrenci(
       index + 1,
       "Ogrenci adi ${index + 1}",
@@ -17,25 +17,27 @@ class ListViewKullanimi extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Ogrenci Listesi")),
-      body: Container(
-        child: ListView(
-          children: tumOgrenciler
-              .map((Ogrenci e) => Card(
-                    color: Colors.blue.shade100,
-                    shadowColor: Colors.blueGrey.shade500,
-                    elevation: 12,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: ListTile(
-                      leading: CircleAvatar(child: Text(e.id.toString())),
-                      title: Text(e.isim),
-                      subtitle: Text(e.soyisim),
-                    ),
-                  ))
-              .toList(),
-        ),
-      ),
+      body: klasikListView(),
+    );
+  }
+
+  ListView klasikListView() {
+    return ListView(
+      children: tumOgrenciler
+          .map((Ogrenci e) => Card(
+                color: Colors.blue.shade100,
+                shadowColor: Colors.blueGrey.shade500,
+                elevation: 12,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: ListTile(
+                  leading: CircleAvatar(child: Text(e.id.toString())),
+                  title: Text(e.isim),
+                  subtitle: Text(e.soyisim),
+                ),
+              ))
+          .toList(),
     );
   }
 }
